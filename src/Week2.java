@@ -35,7 +35,7 @@ public class Week2 implements IWindowListener {
 	public Week2() throws OpenGLException {
 
 		// create a window with a title, size and a listener (this)
-		Window window = new Window("Microsoft", width, height, this);
+		Window window = new Window("COMP3170 Week 2 Demo", width, height, this);
 		window.setResizable(true);
 
 		// start running the window
@@ -65,15 +65,15 @@ public class Week2 implements IWindowListener {
 		
 		
 		vertices = new float[] {
-			-0.8f, 0.4f, //D 0
-			-0.2f, 0.6f, //B 1
-			-0.6f, 1.f, //C 2
+			-0.8f, 0.3f, //D 0
+			-0.2f, 0.5f, //B 1
+			-0.6f, .8f, //C 2
 			
-			-0.2f, -0.4f, //E 3	
-			0.2f, -0.4f, //F 4
-			0.2f, 0.6f, // A 5
-			0.8f, 0.4f, // G 6
-			0.6f, 1.f, //H 7
+			-0.2f, -0.7f, //E 3	
+			0.2f, -0.7f, //F 4
+			0.2f, 0.5f, // A 5
+			0.8f, 0.3f, // G 6
+			0.6f, .8f, //H 7
 			
 		};
 		
@@ -120,7 +120,7 @@ public class Week2 implements IWindowListener {
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 		
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);		
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);		
 		glDrawElements(GL_TRIANGLES, indices.length, GL_UNSIGNED_INT, 0);
 
 	}
