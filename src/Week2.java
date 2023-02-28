@@ -69,13 +69,21 @@ public class Week2 implements IWindowListener {
 			-0.2f, 0.6f, //B 1
 			-0.6f, 1.f, //C 2
 			
-
 			-0.2f, -0.4f, //E 3	
+			0.2f, -0.4f, //F 4
+			0.2f, 0.6f, // A 5
+			0.8f, 0.4f, // G 6
+			0.6f, 1.f, //H 7
+			
 		};
 		
 		indices = new int[]{
-				0, 1, 2,
-				0, 3, 1,
+				0, 1, 2, //left ear
+				0, 3, 1, //left cheek
+				3, 4, 1, //left side of face
+				4, 5, 1, //right side of face
+				5, 4, 6, //right cheek
+				5, 6, 7, //right ear
 		};
 		
 		indexBuffer = GLBuffers.createIndexBuffer(indices);
@@ -84,11 +92,15 @@ public class Week2 implements IWindowListener {
 		
 		// vertex colours
 		colours = new float[] {
-				1.0f, 0.0f, 0.0f, // RED
-				0.0f, 1.0f, 0.0f, // GREEN
-				0.0f, 0.0f, 1.0f, // BLUE
+				1.0f, 1.0f, 1.0f, // D
+				0.3f, 0.2f, 1.0f, // B
+				1.0f, 0.6f, 1.0f, // C
 				
-				1.0f, 0.0f, 0.0f, // RED
+				1.0f, 0.0f, 0.0f, // E
+				1.0f, 0.0f, 0.0f, // F
+				0.3f, 0.2f, 1.0f, // A
+				1.0f, 1.0f, 1.0f, // G
+				1.0f, 0.6f, 1.0f, // H
 
 		};
 		
