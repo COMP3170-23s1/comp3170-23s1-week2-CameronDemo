@@ -1,3 +1,4 @@
+import comp3170.GLBuffers;
 import comp3170.IWindowListener;
 import comp3170.OpenGLException;
 import comp3170.Window;
@@ -18,11 +19,24 @@ public class Week2 implements IWindowListener {
 
 	private int width = 800;
 	private int height = 800;
+	
+	//Vertices and vertex buffer
+	private float[] vertices;
+	private int vertexBuffer;
+	
+	//Colour and colour buffer
+	private float[] colours;
+	private int colourBuffer;
+	
+	//Indices and index buffer
+	private int [] indices;
+	private int indexBuffer;
 
 	public Week2() throws OpenGLException {
 
 		// create a window with a title, size and a listener (this)
 		Window window = new Window("Microsoft", width, height, this);
+		window.setResizable(true);
 
 		// start running the window
 		window.run();
@@ -50,16 +64,62 @@ public class Week2 implements IWindowListener {
 		}
 		
 		
+		vertices = new float[] {
+			-0.8f, 0.4f, //D 0
+			-0.2f, 0.6f, //B 1
+			-0.6f, 1.f, //C 2
+			
+
+			-0.2f, -0.4f, //E 3	
+		};
+		
+		indices = new int[]{
+				0, 1, 2,
+				0, 3, 1,
+		};
+		
+		indexBuffer = GLBuffers.createIndexBuffer(indices);
+		
+		vertexBuffer = GLBuffers.createBuffer(vertices, GL_FLOAT_VEC2);
+		
+		// vertex colours
+		colours = new float[] {
+				1.0f, 0.0f, 0.0f, // RED
+				0.0f, 1.0f, 0.0f, // GREEN
+				0.0f, 0.0f, 1.0f, // BLUE
+				
+				1.0f, 0.0f, 0.0f, // RED
+
+		};
+		
+		colourBuffer = GLBuffers.createBuffer(colours, GL_FLOAT_VEC3);
+		
+		
 	}
 
 	@Override
 	public void draw() {
 		glClear(GL_COLOR_BUFFER_BIT);
+		
+		shader.enable();
+		
+		shader.setAttribute("a_position", vertexBuffer);
+		shader.setAttribute("a_colour", colourBuffer);
+		
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+		
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);		
+		glDrawElements(GL_TRIANGLES, indices.length, GL_UNSIGNED_INT, 0);
 
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		this.width = width;
+		this.height = height;
+		
+		glViewport(0, 0, width, height);
+		
 
 	}
 
